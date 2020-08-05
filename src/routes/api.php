@@ -20,6 +20,7 @@ Route::group(['prefix' => 'v1', 'middleware' => []], function () {
     \GGPHP\ExcelExporter\RouteRegistrar::routes();
     \GGPHP\Necessary\RouteRegistrar::routes();
     \GGPHP\Request\RouteRegistrar::routes();
+    \GGPHP\Contribute\RouteRegistrar::routes();
 
     Route::group(['middleware' => 'auth:api'], function () {
         \GGPHP\Users\RouteRegistrar::routes(function ($router) {

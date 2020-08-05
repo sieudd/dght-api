@@ -57,7 +57,8 @@
             "GGPHP\\ExcelExporter\\": "packages/excel-exporter/src/",
             "GGPHP\\Storage\\": "packages/storage/src/",
             "GGPHP\\Necessary\\": "packages/necessary/src/",
-            "GGPHP\\Request\\": "packages/request/src/"
+            "GGPHP\\Request\\": "packages/request/src/",
+            "GGPHP\\Contribute\\": "packages/contribute/src/"
         },
         "classmap": [
             "database/seeds",

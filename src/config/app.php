@@ -184,6 +184,7 @@ return [
         GGPHP\Storage\Providers\StorageProvider::class,
         GGPHP\Necessary\Providers\NecessaryServiceProvider::class,
         GGPHP\Request\Providers\RequestServiceProvider::class,
+        GGPHP\Contribute\Providers\ContributeServiceProvider::class,
 
     ],
 

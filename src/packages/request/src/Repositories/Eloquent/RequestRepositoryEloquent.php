@@ -21,7 +21,9 @@ class RequestRepositoryEloquent extends BaseRepository implements RequestReposit
      */
     protected $fieldSearchable = [
         'id',
-        'name',
+        'user_request',
+        'necessary_id',
+        'status',
     ];
 
     /**
