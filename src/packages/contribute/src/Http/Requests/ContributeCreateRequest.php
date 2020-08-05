@@ -24,6 +24,8 @@ class ContributeCreateRequest extends FormRequest
     public function rules()
     {
         return [
+            'contributing_component' => 'required',
+            'user_contributor.email' => 'email|unique:users,email',
         ];
     }
 }

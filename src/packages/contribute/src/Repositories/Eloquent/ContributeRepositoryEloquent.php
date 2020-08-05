@@ -71,9 +71,8 @@ class ContributeRepositoryEloquent extends BaseRepository implements ContributeR
             $name = $user->name;
             $urlLogin = env('LOGIN_URL', 'http://localhost:11005/login');
             // dispatch(new SendEmail(compact('email', 'password', 'name', 'urlLogin')));
+            $attributes['contributor'] = $user->id;
         }
-
-        $attributes['contributor'] = $user->id;
 
         $contribute = Contribute::create($attributes);
 
