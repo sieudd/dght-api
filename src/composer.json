@@ -55,7 +55,8 @@
             "GGPHP\\Users\\": "packages/users/src/",
             "GGPHP\\RolePermission\\": "packages/role-permission/src/",
             "GGPHP\\ExcelExporter\\": "packages/excel-exporter/src/",
-            "GGPHP\\Storage\\": "packages/storage/src/"
+            "GGPHP\\Storage\\": "packages/storage/src/",
+            "GGPHP\\Necessary\\": "packages/necessary/src/"
         },
         "classmap": [
             "database/seeds",

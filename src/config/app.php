@@ -182,6 +182,7 @@ return [
         GGPHP\RolePermission\Providers\RolePermissionServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         GGPHP\Storage\Providers\StorageProvider::class,
+        GGPHP\Necessary\Providers\NecessaryServiceProvider::class,
 
     ],
 
