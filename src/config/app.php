@@ -183,6 +183,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         GGPHP\Storage\Providers\StorageProvider::class,
         GGPHP\Necessary\Providers\NecessaryServiceProvider::class,
+        GGPHP\Request\Providers\RequestServiceProvider::class,
 
     ],
 

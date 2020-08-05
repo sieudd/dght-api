@@ -17,7 +17,7 @@ class Necessary extends CoreModel
      * @var array
      */
     protected $fillable = [
-        'name',
+        'name', 'unit',
     ];
 
     /**

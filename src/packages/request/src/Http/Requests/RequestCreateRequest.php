@@ -1,10 +1,10 @@
 <?php
 
-namespace GGPHP\Necessary\Http\Requests;
+namespace GGPHP\Request\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NecessaryUpdateRequest extends FormRequest
+class RequestCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,6 @@ class NecessaryUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'string|unique:necessaries,name,' . $this->route('necessary'),
         ];
     }
 }

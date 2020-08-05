@@ -24,7 +24,8 @@ class NecessaryCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|unique:necessarys,name',
+            'name' => 'required|string|unique:necessaries,name',
+            'unit' => 'required|string',
         ];
     }
 }
