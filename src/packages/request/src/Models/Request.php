@@ -28,7 +28,7 @@ class Request extends CoreModel
     protected $hidden = [];
 
     /**
-     * Define relations user
+     * Define relations userRequest
      */
     public function userRequest()
     {
@@ -36,11 +36,19 @@ class Request extends CoreModel
     }
 
     /**
-     * Define relations user
+     * Define relations necessary
      */
     public function necessary()
     {
         return $this->belongsTo(\GGPHP\Necessary\Models\Necessary::class, 'necessary_id');
+    }
+
+    /**
+     * Define relations user
+     */
+    public function contributeDetailRequest()
+    {
+        return $this->hasMany(\GGPHP\Contribute\Models\ContributeDetailRequest::class);
     }
 
 }

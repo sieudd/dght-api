@@ -27,4 +27,14 @@ class Necessary extends CoreModel
      */
     protected $hidden = [];
 
+    public function request()
+    {
+        return $this->hasMany(\GGPHP\Request\Models\Request::class);
+    }
+
+    public function contributeDetail()
+    {
+        return $this->hasMany(\GGPHP\Contribute\Models\ContributeDetail::class);
+    }
+
 }

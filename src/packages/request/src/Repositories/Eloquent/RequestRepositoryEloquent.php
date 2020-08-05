@@ -54,4 +54,16 @@ class RequestRepositoryEloquent extends BaseRepository implements RequestReposit
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+    public function create(array $attributes)
+    {
+        foreach ($attributes['data'] as $value) {
+            $value['user_request'] = $attributes['user_request'];
+            $request = Request::create($value);
+            $request_id[] = $request->id;
+        }
+
+        $results = Request::whereIn('id', $request_id)->get();
+
+        return $this->parserResult($results);
+    }
 }

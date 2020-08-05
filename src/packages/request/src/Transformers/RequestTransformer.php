@@ -23,6 +23,39 @@ class RequestTransformer extends BaseTransformer
     protected $availableIncludes = ['userRequest', 'necessary'];
 
     /**
+     * Transform the User entity.
+     *
+     * @param User $model
+     *
+     * @return array
+     */
+    public function customAttributes($model): array
+    {
+        $totalQuantityReceived = 0;
+        $totalQuantityShortage = 0;
+        $totalExcessAmount = 0;
+
+        if (!empty(count($model->contributeDetailRequest))) {
+            foreach ($model->contributeDetailRequest as $contributeDetailRequest) {
+                $totalQuantityReceived += $contributeDetailRequest->amount;
+            }
+        }
+
+        if ($model->amount > $totalQuantityReceived) {
+            $totalQuantityShortage = $model->amount - $totalQuantityReceived;
+        }
+
+        if ($model->amount < $totalQuantityReceived) {
+            $totalExcessAmount = $totalQuantityReceived - $model->amount;
+        }
+        return [
+            'totalQuantityReceived' => $totalQuantityReceived,
+            'totalQuantityShortage' => $totalQuantityShortage,
+            'totalExcessAmount' => $totalExcessAmount,
+        ];
+    }
+
+    /**
      * Include UserRequest
      * @param  Request $request
      */

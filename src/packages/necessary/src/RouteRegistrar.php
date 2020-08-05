@@ -32,7 +32,6 @@ class RouteRegistrar extends CoreRegistrar
             \Route::group(['middleware' => []], function () {
                 \Route::resource('necessaries', 'NecessaryController');
             });
-
         });
     }
 }
