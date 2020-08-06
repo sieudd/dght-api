@@ -7,10 +7,10 @@ use GGPHP\Contribute\Models\ContributeDetail;
 use GGPHP\Contribute\Models\ContributeDetailRequest;
 use GGPHP\Contribute\Presenters\ContributePresenter;
 use GGPHP\Contribute\Repositories\Contracts\ContributeRepository;
-// use GGPHP\Users\Jobs\SendEmail;
 use GGPHP\Users\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+// use GGPHP\Users\Jobs\SendEmail;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 
@@ -67,10 +67,13 @@ class ContributeRepositoryEloquent extends BaseRepository implements ContributeR
 
             $user = User::create($attributes['user_contributor']);
             // send mail
-            $email = $user->email;
-            $name = $user->name;
-            $urlLogin = env('LOGIN_URL', 'http://localhost:11005/login');
-            // dispatch(new SendEmail(compact('email', 'password', 'name', 'urlLogin')));
+            $dataMail = [
+                'email' => $user->email,
+                'name' => $user->name,
+                'password' => $password,
+                'url_login' => env('LOGIN_URL', 'http://localhost:11005/login'),
+            ];
+            // dispatch(new SendEmail($dataMail, 'NOTI_PASSWORD'));
             $attributes['contributor'] = $user->id;
         }
 
@@ -91,4 +94,29 @@ class ContributeRepositoryEloquent extends BaseRepository implements ContributeR
         return parent::find($contribute->id);
     }
 
+    public function approval($id, array $attributes)
+    {
+        $contribute = Contribute::find($id);
+
+        $contribute->update($attributes);
+        if ($attributes['status'] == 'TIEP_NHAN' || $attributes['status'] == 'PHAN_BO') {
+            switch ($attributes['status']) {
+                case 'TIEP_NHAN':
+                    $status = "Tiếp nhận";
+                    break;
+                case 'PHAN_BO':
+                    $status = "Phân bổ";
+                    break;
+            }
+            $dataMail = [
+                'email' => $contribute->contributorUser->email,
+                'name' => $contribute->contributorUser->name,
+                'status' => $status,
+                'details' => $contribute->contributeDetails,
+            ];
+            // dispatch(new SendEmail($dataMail, 'CONTRIBUTE_APPROVAL'));
+        }
+
+        return $this->parserResult($contribute);
+    }
 }

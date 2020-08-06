@@ -18,6 +18,7 @@ class RequestServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
         }
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'view-requets');
 
     }
 

@@ -18,7 +18,7 @@ class CreateRequestsTable extends Migration
             $table->integer('user_request');
             $table->integer('necessary_id');
             $table->integer('amount');
-            $table->string('status')->default('PENDING');
+            $table->string('status')->default('CHUA_DUYET');
             $table->timestamps();
         });
 

@@ -31,6 +31,7 @@ class RouteRegistrar extends CoreRegistrar
         $this->router->group(['middleware' => []], function ($router) {
             \Route::group(['middleware' => []], function () {
                 \Route::resource('contributes', 'ContributeController');
+                \Route::put('contribute-approval/{id}', 'ContributeController@approval');
             });
 
         });

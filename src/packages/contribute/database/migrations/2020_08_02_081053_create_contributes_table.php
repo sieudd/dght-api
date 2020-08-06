@@ -17,7 +17,7 @@ class CreateContributesTable extends Migration
             $table->increments('id');
             $table->string('contributor');
             $table->string('donation_form')->nullable();
-            $table->string('status')->default('COMMITMENT');
+            $table->string('status')->default('CAM_KET');
             $table->timestamps();
         });
 

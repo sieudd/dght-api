@@ -5,6 +5,7 @@ namespace GGPHP\Request\Repositories\Eloquent;
 use GGPHP\Request\Models\Request;
 use GGPHP\Request\Presenters\RequestPresenter;
 use GGPHP\Request\Repositories\Contracts\RequestRepository;
+// use GGPHP\Users\Jobs\SendEmail;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 
@@ -65,5 +66,24 @@ class RequestRepositoryEloquent extends BaseRepository implements RequestReposit
         $results = Request::whereIn('id', $request_id)->get();
 
         return $this->parserResult($results);
+    }
+
+    public function approval($id, array $attributes)
+    {
+        $request = Request::find($id);
+
+        $request->update($attributes);
+        if ($attributes['status'] === 'DUYET') {
+            $dataMail = [
+                'email' => $request->userRequest->email,
+                'name' => $request->userRequest->name,
+                'name_necessary' => $request->necessary->name,
+                'unit' => $request->necessary->unit,
+                'amount' => $request->amount,
+            ];
+            // dispatch(new SendEmail($dataMail, 'REQUEST_APPROVAL'));
+        }
+
+        return $this->parserResult($request);
     }
 }

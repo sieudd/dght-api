@@ -101,4 +101,18 @@ class ContributeController extends Controller
         return $this->success([], trans('lang::messages.common.deleteSuccess'), ['code' => Response::HTTP_NO_CONTENT, 'isShowData' => false]);
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function approval($id, Request $request)
+    {
+        $contribute = $this->contributeRepository->approval($id, $request->all());
+
+        return $this->success($contribute, trans('lang::messages.common.modifySuccess'));
+    }
+
 }

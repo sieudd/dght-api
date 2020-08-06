@@ -36,8 +36,9 @@ class NecessaryTransformer extends BaseTransformer
         $totalQuantityReceived = 0;
         $totalQuantityShortage = 0;
         $totalExcessAmount = 0;
+        $percent = 0;
 
-        $requestApprovals = $model->request->where('status', 'APPROVAL');
+        $requestApprovals = $model->request->where('status', 'DUYET');
 
         if (!empty(count($requestApprovals))) {
             foreach ($requestApprovals as $requestApproval) {
@@ -59,11 +60,19 @@ class NecessaryTransformer extends BaseTransformer
             $totalExcessAmount = $totalQuantityReceived - $totalAmountRequired;
         }
 
+        if ($totalAmountRequired != 0) {
+            $percent = ($totalQuantityReceived * 100) / $totalAmountRequired;
+            if ($percent > 100) {
+                $percent = 100;
+            }
+        }
+
         return [
             'totalAmountRequired' => $totalAmountRequired,
             'totalQuantityReceived' => $totalQuantityReceived,
             'totalQuantityShortage' => $totalQuantityShortage,
             'totalExcessAmount' => $totalExcessAmount,
+            'percent' => $percent,
         ];
     }
 
@@ -73,7 +82,7 @@ class NecessaryTransformer extends BaseTransformer
      */
     public function includeRequests(Necessary $necessary)
     {
-        $request = $necessary->request->where('status', 'APPROVAL');
+        $request = $necessary->request->where('status', 'DUYET');
         return $this->collection($request, new RequestTransformer, 'Request');
     }
 

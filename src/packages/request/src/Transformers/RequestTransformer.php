@@ -34,7 +34,7 @@ class RequestTransformer extends BaseTransformer
         $totalQuantityReceived = 0;
         $totalQuantityShortage = 0;
         $totalExcessAmount = 0;
-
+        $percent = 0;
         if (!empty(count($model->contributeDetailRequest))) {
             foreach ($model->contributeDetailRequest as $contributeDetailRequest) {
                 $totalQuantityReceived += $contributeDetailRequest->amount;
@@ -48,10 +48,18 @@ class RequestTransformer extends BaseTransformer
         if ($model->amount < $totalQuantityReceived) {
             $totalExcessAmount = $totalQuantityReceived - $model->amount;
         }
+
+        $percent = ($totalQuantityReceived * 100) / $model->amount;
+
+        if ($percent > 100) {
+            $percent = 100;
+        }
+
         return [
             'totalQuantityReceived' => $totalQuantityReceived,
             'totalQuantityShortage' => $totalQuantityShortage,
             'totalExcessAmount' => $totalExcessAmount,
+            'percent' => $percent,
         ];
     }
 

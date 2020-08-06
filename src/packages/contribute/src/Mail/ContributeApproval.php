@@ -1,17 +1,17 @@
 <?php
 
-namespace GGPHP\Users\Mail;
+namespace GGPHP\Contribute\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NotificationPassword extends Mailable
+class ContributeApproval extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
-     * User name
+     * data
      *
      * @var string
      */
@@ -35,7 +35,7 @@ class NotificationPassword extends Mailable
     public function build()
     {
         return $this->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
-            ->subject('Cổng đóng góp hỗ trợ - Thông tin tài khoản của bạn')
-            ->view('view-users::emails.notification_password');
+            ->subject('Cổng đóng góp hỗ trợ - ' . $this->data['status'])
+            ->view('view-contribute::emails.contribute_approval');
     }
 }

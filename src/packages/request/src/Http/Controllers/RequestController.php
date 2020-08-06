@@ -101,4 +101,10 @@ class RequestController extends Controller
         return $this->success([], trans('lang::messages.common.deleteSuccess'), ['code' => Response::HTTP_NO_CONTENT, 'isShowData' => false]);
     }
 
+    public function approval($id, Request $request)
+    {
+        $request = $this->requestRepository->approval($id, $request->all());
+
+        return $this->success($request, trans('lang::messages.common.modifySuccess'));
+    }
 }
