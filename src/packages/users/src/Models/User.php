@@ -24,7 +24,7 @@ class User extends CoreModel implements AuthenticatableContract, AuthorizableCon
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'type', 'type_contribute', 'founding', 'phone_number', 'address', 'business', 'business_code',
+        'name', 'email', 'password', 'type', 'type_contribute', 'founding', 'phone_number', 'address', 'business', 'business_code', 'contact_name',
     ];
 
     protected $dateTimeFields = [

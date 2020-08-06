@@ -6,6 +6,7 @@ use GGPHP\Contribute\Transformers\ContributeDetailTransformer;
 use GGPHP\Core\Transformers\BaseTransformer;
 use GGPHP\Necessary\Models\Necessary;
 use GGPHP\Request\Transformers\RequestTransformer;
+use GGPHP\Storage\Transformers\UploadFileTransformer;
 
 /**
  * Class NecessaryTransformer.
@@ -20,7 +21,7 @@ class NecessaryTransformer extends BaseTransformer
      *
      * @var array
      */
-    protected $availableIncludes = ['requests', 'contributeDetails'];
+    protected $availableIncludes = ['requests', 'contributeDetails', 'uploadFile'];
 
     /**
      * Transform the User entity.
@@ -84,4 +85,14 @@ class NecessaryTransformer extends BaseTransformer
     {
         return $this->collection($necessary->contributeDetail, new ContributeDetailTransformer, 'ContributeDetail');
     }
+
+    /**
+     * include uploadfile
+     * @param  Necessary $necessary
+     */
+    public function includeUploadFile(Necessary $necessary)
+    {
+        return $this->collection($necessary->uploadFiles, new UploadFileTransformer, 'UploadFile');
+    }
+
 }

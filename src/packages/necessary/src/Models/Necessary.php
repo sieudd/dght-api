@@ -37,4 +37,11 @@ class Necessary extends CoreModel
         return $this->hasMany(\GGPHP\Contribute\Models\ContributeDetail::class);
     }
 
+    /**
+     * Define relations upload file
+     */
+    public function uploadFiles()
+    {
+        return $this->morphMany('GGPHP\Storage\Models\UploadFile', 'uploadFileTable', 'object_type', 'object_id');
+    }
 }

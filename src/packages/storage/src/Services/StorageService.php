@@ -13,17 +13,30 @@ class StorageService
      */
     public static function add($files, $id, $modelType)
     {
-        foreach ($files as $file) {
+        if (is_array($files)) {
+            foreach ($files as $file) {
+                $attributes['type'] = UploadFile::FILE;
+                $name = $file->store('files');
+                $link = Storage::url($name);
+                $attributes['object_id'] = $id;
+                $attributes['object_type'] = $modelType;
+                $attributes['path'] = $link;
+                $attributes['name'] = $file->getClientOriginalName();
+
+                $uploadFile = UploadFile::create($attributes);
+            }
+        } else {
             $attributes['type'] = UploadFile::FILE;
-            $name = $file->store('files');
+            $name = $files->store('files');
             $link = Storage::url($name);
             $attributes['object_id'] = $id;
             $attributes['object_type'] = $modelType;
             $attributes['path'] = $link;
-            $attributes['name'] = $file->getClientOriginalName();
+            $attributes['name'] = $files->getClientOriginalName();
 
             $uploadFile = UploadFile::create($attributes);
         }
+
     }
 
     /**
