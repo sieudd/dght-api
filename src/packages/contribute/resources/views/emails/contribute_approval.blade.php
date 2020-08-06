@@ -36,9 +36,9 @@
                 <td class="content-cell" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">
                   <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; font-size: 13px; margin-top: 0; text-align: left;"><b>Kính gửi Ông/Bà</b> <i>{{$data['name']}}</i> !</p>
                   <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; font-size: 13px; line-height: 1.5em; margin-top: 0; text-align: left;"><b>Yêu cầu đóng góp của quý Ông/Bà đã được <i>{{$data['status']}}</i>.</b></p>
-                  <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; font-size: 13px; line-height: 1.5em; margin-top: 0; text-align: left;"><b>Chi tiết đơn {{$data['status']}}:</b></p>
+                  <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; font-size: 13px; line-height: 1.5em; margin-top: 0; text-align: left;"><b>Chi tiết đơn:</b></p>
                   @foreach ($data['details'] as $detail)
-                    <p>- {{$detail->amount}} {{$detail->necessary->unit}} {{$detail->necessary->name}}</p>
+                    <p>- {{$detail->necessary->name}}: {{$detail->amount}} {{$detail->necessary->unit}} </p>
                   @endforeach
                   <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; font-size: 13px; margin-top: 0; text-align: left;"><b>Vui lòng kích chọn vào đường dẫn dưới đây để truy cập vào hệ thống:</b></p>
                   <p><a href="#" style="font-family: Avenir, Helvetica, sans-serif;line-height: 1.5em; box-sizing: border-box; color: #3869D4;">quansontra.greenglobal.vn</a></p>
